@@ -48,11 +48,16 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 | Component | Specification |
 |:---|:---|
 | **Base Model** | CellViT (Cell Vision Transformer) |
+| **Model Variant** | CellViT-Small (embed_dim=384) |
+| **Weight File** | `cellvit_256.pth` |
 | **Pre-training** | PanNuke dataset (200,000+ labeled nuclei) |
-| **Fine-tuning** | 200 breast histopathology slides (137 train / 63 val) |
+| **Fine-tuning Data** | 200 breast histopathology slides (137 train / 63 val) |
+| **Fine-tuning Strategy** | Frozen Encoder + Trainable Decoder (Transfer Learning) |
+| **Trainable Parameters** | 1,474,434 (~1.5M, decoder heads only) |
 | **Embedding Dimension** | 384 |
 | **Transformer Layers** | 12 |
 | **Attention Heads** | 6 |
+| **Source Repository** | [TIO-IKIM/CellViT](https://github.com/TIO-IKIM/CellViT) |
 
 ---
 
@@ -122,10 +127,6 @@ Breast-Cancer-CellViT-Hybrid-Pooling/
 ## Citation
 
 If you use this work, please cite:
-```
-
 Aghaei, F.P. (2026). Breast Cancer Detection with CellViT + Hybrid Pooling.
 Fine-tuned CellViT model with Top-K + Mean aggregation.
 GitHub: https://github.com/AghaeiPhD/Breast-Cancer-CellViT-Hybrid-Pooling
-
-```
