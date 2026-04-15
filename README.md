@@ -45,7 +45,7 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 
 ## Model Architecture
 
-**This implementation is built upon the official [CellViT](https://github.com/TIO-IKIM/CellViT) codebase and utilizes the `cellvit_256.pth` checkpoint, a fine-tuned variant of CellViT-Small (embed_dim=384). The base model was pre-trained on the PanNuke dataset—a comprehensive collection of over 200,000 labeled nuclei across 19 tissue types, including breast and colon. For this project, the pre-trained encoder is used as a powerful feature extractor for breast cancer histopathology, and fine-tuned on 200 slides sourced from the GDC (Genomic Data Commons) TCGA-BRCA cohort. Notably, this fine-tuning process does not require nucleus masks, as the decoder is frozen and only the encoder is adapted for slide-level classification.**
+**This implementation is built upon the official [CellViT](https://github.com/TIO-IKIM/CellViT) codebase and utilizes the `cellvit_256.pth` checkpoint, a fine-tuned variant of CellViT-Small (embed_dim=384). The base model was pre-trained on the PanNuke dataset—a comprehensive collection of over 200,000 labeled nuclei across 19 tissue types, including breast and colon. For this project, the pre-trained encoder is used as a powerful feature extractor and fine-tuned on 200 breast cancer histopathology slides (137 train / 63 validation) sourced from the GDC (Genomic Data Commons) TCGA-BRCA cohort. The model is then evaluated on a completely independent test set of 86 external TCGA slides, with no overlap between fine-tuning and test data. Notably, this fine-tuning process does not require nucleus masks, as only the encoder is adapted for slide-level classification.**
 
 | Component | Specification |
 |:---|:---|
