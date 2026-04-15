@@ -45,6 +45,8 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 
 ## Model Architecture
 
+**This implementation uses the fine-tuned weights from `cellvit_256.pth`. The base CellViT model was pre-trained on the PanNuke dataset (200,000+ labeled nuclei across 19 tissue types, including breast and colon), enabling robust feature extraction for histopathology.**
+
 | Component | Specification |
 |:---|:---|
 | **Base Model** | CellViT (Cell Vision Transformer) |
