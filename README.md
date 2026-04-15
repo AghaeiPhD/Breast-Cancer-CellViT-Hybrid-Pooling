@@ -1,3 +1,4 @@
+```
 # Breast Cancer Detection with CellViT + Hybrid Pooling
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -9,6 +10,8 @@ Fine-tuned CellViT (Cell Vision Transformer) for breast cancer detection from wh
 ---
 
 ## Pipeline Overview
+```
+
 Step 1: Load Fine-tuned CellViT Model (pre-trained on PanNuke)
 ↓
 Step 2: Extract Patches from 86 External TCGA Slides (~200 patches/slide)
@@ -18,6 +21,8 @@ Step 3: Generate Patch-level Malignancy Probabilities
 Step 4: Hybrid Pooling (Top-K Mean + Global Mean, α=0.7, K=100)
 ↓
 Step 5: Slide-level Diagnosis with Threshold = 0.5
+
+```
 ---
 
 ## Key Results
@@ -91,6 +96,8 @@ Hybrid pooling achieves the **best balance** between high recall and low false a
 ---
 
 ## Repository Structure
+```
+
 Breast-Cancer-CellViT-Hybrid-Pooling/
 ├── README.md
 ├── LICENSE
@@ -101,6 +108,8 @@ Breast-Cancer-CellViT-Hybrid-Pooling/
 │   └── cellvit_output.pdf
 └── results/
     └── roc_curve_hybrid_pooling.png
+
+```
 ---
 
 ## Author
@@ -114,6 +123,10 @@ Breast-Cancer-CellViT-Hybrid-Pooling/
 ## Citation
 
 If you use this work, please cite:
+```
+
 Aghaei, F.P. (2026). Breast Cancer Detection with CellViT + Hybrid Pooling.
 Fine-tuned CellViT model with Top-K + Mean aggregation.
 GitHub: https://github.com/AghaeiPhD/Breast-Cancer-CellViT-Hybrid-Pooling
+
+```
