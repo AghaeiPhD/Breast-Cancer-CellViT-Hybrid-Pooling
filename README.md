@@ -10,7 +10,6 @@ Fine-tuned CellViT (Cell Vision Transformer) for breast cancer detection from wh
 ---
 
 ## Pipeline Overview
-```
 
 Step 1: Load Fine-tuned CellViT Model (pre-trained on PanNuke)
 ↓
@@ -22,7 +21,6 @@ Step 4: Hybrid Pooling (Top-K Mean + Global Mean, α=0.7, K=100)
 ↓
 Step 5: Slide-level Diagnosis with Threshold = 0.5
 
-```
 ---
 
 ## Key Results
@@ -96,7 +94,6 @@ Hybrid pooling achieves the **best balance** between high recall and low false a
 ---
 
 ## Repository Structure
-```
 
 Breast-Cancer-CellViT-Hybrid-Pooling/
 ├── README.md
@@ -109,7 +106,6 @@ Breast-Cancer-CellViT-Hybrid-Pooling/
 └── results/
     └── roc_curve_hybrid_pooling.png
 
-```
 ---
 
 ## Author
@@ -123,10 +119,8 @@ Breast-Cancer-CellViT-Hybrid-Pooling/
 ## Citation
 
 If you use this work, please cite:
-```
 
 Aghaei, F.P. (2026). Breast Cancer Detection with CellViT + Hybrid Pooling.
 Fine-tuned CellViT model with Top-K + Mean aggregation.
 GitHub: https://github.com/AghaeiPhD/Breast-Cancer-CellViT-Hybrid-Pooling
-
 ```
