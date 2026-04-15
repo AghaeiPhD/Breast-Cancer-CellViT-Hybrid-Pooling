@@ -45,7 +45,7 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 
 ## Model Architecture
 
-**This implementation is built upon the official [CellViT](https://github.com/TIO-IKIM/CellViT) codebase and utilizes the `cellvit_256.pth` checkpoint, a fine-tuned variant of CellViT-Small (embed_dim=384). The base model was pre-trained on the PanNuke dataset—a comprehensive collection of over 200,000 labeled nuclei across 19 tissue types, including breast and colon—providing a robust foundation for histopathology feature extraction.**
+**This implementation is built upon the official [CellViT](https://github.com/TIO-IKIM/CellViT) codebase and utilizes the `cellvit_256.pth` checkpoint, a fine-tuned variant of CellViT-Small (embed_dim=384). The base model was pre-trained on the PanNuke dataset—a comprehensive collection of over 200,000 labeled nuclei across 19 tissue types, including breast and colon. The fine-tuning was performed on 200 breast cancer histopathology slides sourced from the GDC (Genomic Data Commons) TCGA-BRCA cohort.**
 
 | Component | Specification |
 |:---|:---|
@@ -53,7 +53,7 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 | **Model Variant** | CellViT-Small (embed_dim=384) |
 | **Weight File** | `cellvit_256.pth` |
 | **Pre-training** | PanNuke dataset (200,000+ labeled nuclei) |
-| **Fine-tuning Data** | 200 breast histopathology slides (137 train / 63 val) |
+| **Fine-tuning Data** | 200 breast histopathology slides (137 train / 63 val) from GDC TCGA-BRCA |
 | **Fine-tuning Strategy** | Frozen Encoder + Trainable Decoder (Transfer Learning) |
 | **Trainable Parameters** | 1,474,434 (~1.5M, decoder heads only) |
 | **Embedding Dimension** | 384 |
