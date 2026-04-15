@@ -97,6 +97,14 @@ Hybrid pooling achieves the **best balance** between high recall and low false a
 - All false alarms were benign slides with **inflammation or dense tissue** mistaken for tumor.
 - Scores ranged from 54-66%, showing moderate model confidence.
 
+### Cross-Project Consistency Analysis
+- **False Negatives:** 3 out of the 5 missed cases in this study were **also missed** by our previous [ABMIL + H-optimus-0](https://github.com/AghaeiPhD/Breast-Cancer-Detection-System-WSI-Analysis) pipeline.
+- **False Positives:** 4 out of the 5 false alarms in this study were **also misclassified** by the ABMIL pipeline.
+- **Interpretation:** The high overlap in errors across two completely different architectures (CellViT with Hybrid Pooling vs. ABMIL with Attention) strongly suggests that these specific slides represent **inherently challenging cases**:
+  - The 3 consistently missed malignant slides likely contain **low-grade or diffuse tumors** that are fundamentally difficult for patch-based methods.
+  - The 4 consistently misclassified benign slides likely contain **dense inflammation or atypical benign tissue** that mimics malignancy.
+- **Conclusion:** These errors are **data-centric** rather than model-centric. Addressing them would require **higher magnification scans**, **multi-resolution analysis**, or **incorporation of clinical context**, not merely architectural changes.
+
 ---
 
 ## Repository Structure
