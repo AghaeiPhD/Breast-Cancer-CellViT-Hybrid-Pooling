@@ -45,7 +45,7 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 
 ## Model Architecture
 
-**This implementation is based on `cellvit_256.pth`, a fine-tuned checkpoint of CellViT-Small (embed_dim=384). The base model was pre-trained on the PanNuke dataset (200,000+ labeled nuclei across 19 tissue types, including breast and colon), providing a robust foundation for histopathology feature extraction.**
+**This implementation is built upon the official [CellViT](https://github.com/TIO-IKIM/CellViT) codebase and utilizes the `cellvit_256.pth` checkpoint, a fine-tuned variant of CellViT-Small (embed_dim=384). The base model was pre-trained on the PanNuke dataset—a comprehensive collection of over 200,000 labeled nuclei across 19 tissue types, including breast and colon—providing a robust foundation for histopathology feature extraction.**
 
 | Component | Specification |
 |:---|:---|
@@ -59,7 +59,6 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 | **Embedding Dimension** | 384 |
 | **Transformer Layers** | 12 |
 | **Attention Heads** | 6 |
-| **Source Repository** | [TIO-IKIM/CellViT](https://github.com/TIO-IKIM/CellViT) |
 ---
 
 ## Hybrid Pooling Strategy
