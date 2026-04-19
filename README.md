@@ -107,6 +107,26 @@ Hybrid pooling achieves the **best balance** between high recall and low false a
 
 ---
 
+## Limitations & Data-Centric Considerations
+
+Although the pipeline operates on fixed-size patches extracted from whole slide images, variations in scanner resolution (MPP: microns-per-pixel) were not explicitly normalized during preprocessing.
+
+As a result, identical patch sizes may correspond to different physical tissue areas across slides. This introduces potential scale inconsistency, which may affect the model’s sensitivity to:
+
+- Subtle or low-grade tumors requiring fine-grained spatial resolution  
+- Benign inflammatory regions that may resemble malignant patterns at different scales  
+
+Importantly, similar failure patterns are observed across both CellViT and ABMIL-based pipelines, suggesting that these limitations are primarily **data-centric rather than model-specific**.
+
+Future improvements could include:
+- MPP normalization or resolution standardization
+- Multi-scale or hierarchical patch sampling
+- Incorporation of contextual slide-level information
+
+Despite this limitation, the model demonstrates consistent performance on the external TCGA test set, suggesting robustness to moderate resolution variation within the current dataset.
+
+---
+
 ## Repository Structure
 ```
 
@@ -126,8 +146,9 @@ Breast-Cancer-CellViT-Hybrid-Pooling/
 
 ## Author
 
-**F.P. Aghaei**
-- Project Date: April 2026
+**F.P. Aghaei**  
+Affiliation: Independent Researcher  
+- Project Date: March - April 2026  
 - License: MIT
 
 ---
