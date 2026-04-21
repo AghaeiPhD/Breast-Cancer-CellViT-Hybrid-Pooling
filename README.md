@@ -45,20 +45,23 @@ Step 5: Slide-level Diagnosis with Threshold = 0.5
 
 ## Model Architecture
 
-**This implementation is built upon the official [CellViT](https://github.com/TIO-IKIM/CellViT) codebase and utilizes the `cellvit_256.pth` checkpoint, a fine-tuned variant of CellViT-Small (embed_dim=384). The base model was pre-trained on the PanNuke dataset—a comprehensive collection of over 200,000 labeled nuclei across 19 tissue types, including breast and colon. For this project, the pre-trained encoder is used as a powerful feature extractor and fine-tuned on 200 breast cancer histopathology slides (137 train / 63 validation) sourced from the GDC (Genomic Data Commons) TCGA-BRCA cohort. The model is then evaluated on a completely independent test set of 86 external TCGA slides, with no overlap between fine-tuning and test data. Notably, this fine-tuning process does not require nucleus masks, as only the encoder is adapted for slide-level classification.**
+This implementation is built upon the official CellViT codebase and utilizes the `cellvit_256.pth` checkpoint, a pre-trained variant of CellViT-Small (embed_dim=384) originally trained on the PanNuke dataset—a comprehensive collection of over 200,000 labeled nuclei across 19 tissue types, including breast and colon. For this project, the pre-trained encoder is kept **frozen** as a feature extractor, while the **decoder segmentation heads** are fine-tuned on 200 breast cancer histopathology slides (137 train / 63 validation) sourced from the GDC (Genomic Data Commons) TCGA-BRCA cohort. The model is then evaluated on a completely independent test set of 86 external TCGA slides, with no overlap between fine-tuning and test data.
 
-| Component | Specification |
-|:---|:---|
-| **Base Model** | CellViT (Cell Vision Transformer) |
-| **Model Variant** | CellViT-Small (embed_dim=384) |
-| **Weight File** | `cellvit_256.pth` |
-| **Pre-training** | PanNuke dataset (200,000+ labeled nuclei) |
-| **Fine-tuning Data** | 200 breast histopathology slides (137 train / 63 val) from GDC TCGA-BRCA |
-| **Fine-tuning Strategy** | Frozen Encoder + Trainable Decoder (Transfer Learning) |
-| **Trainable Parameters** | 1,474,434 (~1.5M, decoder heads only) |
-| **Embedding Dimension** | 384 |
-| **Transformer Layers** | 12 |
-| **Attention Heads** | 6 |
+**Fine-tuning Rationale:** The encoder (pre-trained on PanNuke) is kept **frozen** to preserve foundational nuclear morphology knowledge and prevent overfitting given the limited TCGA fine-tuning data (200 slides). Only the **decoder segmentation heads** are fine-tuned (~1.5M parameters). Although the decoder produces nucleus segmentation maps as intermediate outputs, supervision is provided **exclusively at the slide-level** via binary cross-entropy loss on the spatially-averaged malignancy channel. This allows the decoder to adapt its spatial feature representations for breast cancer detection **without requiring pixel-level mask annotations** on TCGA.
+
+| Component              | Specification                                    |
+|------------------------|--------------------------------------------------|
+| Base Model             | CellViT (Cell Vision Transformer)                |
+| Model Variant          | CellViT-Small (embed_dim=384)                    |
+| Weight File            | cellvit_256.pth                                  |
+| Pre-training           | PanNuke dataset (200,000+ labeled nuclei)        |
+| Fine-tuning Data       | 200 breast histopathology slides (137 train / 63 val) from GDC TCGA-BRCA |
+| Fine-tuning Strategy   | Frozen Encoder + Trainable Decoder Heads         |
+| Supervision            | Slide-level binary labels (no pixel masks)       |
+| Trainable Parameters   | ~1.5M (decoder segmentation heads only)          |
+| Embedding Dimension    | 384                                              |
+| Transformer Layers     | 12                                               |
+| Attention Heads        | 6                                                |
 ---
 
 ## Hybrid Pooling Strategy
@@ -129,7 +132,7 @@ Despite this limitation, the model demonstrates consistent performance on the ex
 
 ### Future Work
 
-Future work may include incorporating datasets with segmentation annotations (e.g., PanNuke masks) to provide spatial guidance and improve robustness. This would involve fine-tuning the full CellViT architecture including its decoder heads, potentially enabling nucleus-level interpretability alongside slide-level diagnosis.
+Future work may include incorporating datasets with pixel-level segmentation annotations (e.g., PanNuke masks) to provide **direct spatial supervision** for the decoder. This would enable fine-tuning of the **full** CellViT architecture (including the currently frozen encoder), potentially improving both slide-level diagnosis and enabling nucleus-level interpretability through accurate instance segmentation on TCGA data.
 
 ---
 ## Repository Structure
