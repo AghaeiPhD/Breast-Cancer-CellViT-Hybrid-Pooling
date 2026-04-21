@@ -122,13 +122,16 @@ Future improvements could include:
 - MPP normalization or resolution standardization
 - Multi-scale or hierarchical patch sampling
 - Incorporation of contextual slide-level information
-- Future work may include incorporating datasets with segmentation annotations to provide spatial guidance and improve robustness.
-
 
 Despite this limitation, the model demonstrates consistent performance on the external TCGA test set, suggesting robustness to moderate resolution variation within the current dataset.
 
 ---
 
+### Future Work
+
+Future work may include incorporating datasets with segmentation annotations (e.g., PanNuke masks) to provide spatial guidance and improve robustness. This would involve fine-tuning the full CellViT architecture including its decoder heads, potentially enabling nucleus-level interpretability alongside slide-level diagnosis.
+
+---
 ## Repository Structure
 ```
 
